@@ -1,0 +1,78 @@
+{% extends 'appfp/layout.html' %}
+{% block title %}Принципы ООП. Наследование{% endblock %}
+{% block content %}
+    <a href="{% url 'index' %}">На главную</a>
+    <h1>Наследование</h1>
+    <h2>Что такое наследование?</h2>
+    <h3>Наследование - это механизм, позволяющий создавать новый класс на основе существующего класса. Новый класс (наследник) получает все атрибуты и методы родительского класса и может добавлять свои собственные.</h3>
+    <h2>Базовый синтаксис наследования</h2>
+    <h3>Синтаксис: class *название дочернего класса*(*название родительского класса*). Пример:</h3>
+    <div>
+        <pre># Родительский класс</pre>
+        <pre>class Animal:</pre>
+        <pre>    def __init__(self, name):</pre>
+        <pre>        self.name = name</pre>
+        <pre>    def speak(self):</pre>
+        <pre>        return "Неизвестный звук"</pre>
+        <pre># Дочерний класс</pre>
+        <pre>class Dog(Animal):  # Dog наследует от Animal</pre>
+        <pre>    def speak(self):</pre>
+        <pre>        return "Гав!"</pre>
+        <pre>class Cat(Animal):  # Cat наследует от Animal</pre>
+        <pre>    def speak(self):</pre>
+        <pre>        return "Мяу!"</pre>
+    </div>
+    <h3></h3>
+    <h2>Множественное наследование</h2>
+    <h3>Python поддерживает множественное наследование - класс может наследовать от нескольких родительских классов:</h3>
+    <div>
+        <pre>class ElectricalDevice:</pre>
+        <pre>    def __init__(self, power):</pre>
+        <pre>        self.power = power</pre>
+        <pre>class ScreenDevice:</pre>
+        <pre>    def __init__(self, screen_size):</pre>
+        <pre>        self.screen_size = screen_size</pre>
+        <pre>class Smartphone(ElectricalDevice, ScreenDevice):</pre>
+        <pre>    def __init__(self, power, screen_size, brand):</pre>
+        <pre>        ElectricalDevice.__init__(self, power)</pre>
+        <pre>        ScreenDevice.__init__(self, screen_size)</pre>
+        <pre>        self.brand = brand</pre>
+    </div>
+    <h3>Здесь представлен класс смартфона, который наследует параметры как электронного устройства (ElectricalDevice), так и экранного устройства (ScreenDevice).</h3>
+    <h2>Функция super()</h2>
+    <h3>Для вызова методов родительского класса используется функция super():</h3>
+    <div>
+        <pre>class Vehicle:</pre>
+        <pre>    def __init__(self, brand, model):</pre>
+        <pre>        self.brand = brand</pre>
+        <pre>        self.model = model</pre>
+        <pre>class Car(Vehicle):</pre>
+        <pre>    def __init__(self, brand, model, doors):</pre>
+        <pre>        super().__init__(brand, model)  # вызов конструктора родителя</pre>
+        <pre>        self.doors = doors</pre>
+    </div>
+    <h2>Преимущества наследования</h2>
+    <h3>1. Повторное использование кода</h3>
+    <h3>2. Создание иерархии классов</h3>
+    <h3>3. Расширяемость системы</h3>
+    <h3>4. Упрощение поддержки кода</h3>
+    <h2>Проверка наследования</h2>
+    <div>
+        <pre>dog = Dog("Бобик")</pre>
+        <pre>print(isinstance(dog, Dog))     # True</pre>
+        <pre>print(isinstance(dog, Animal))  # True</pre>
+        <pre>print(issubclass(Dog, Animal))  # True</pre>
+    </div>
+    <h2>Практическое задание</h2>
+    <h3>Создайте родительский класс длинной в 8 строк с учётом строки со словом class. К этому классу создайте дочерний класс. Используйте метод super() в дочернем классе.</h3>
+    <form>
+        {% csrf_token %}
+        {{ form.field }}
+        <button type="submit"><h3>готово</h3></button>
+        <h3>{{ error }}</h3>
+        {% if error == 'Отличная работа!' %}
+            <h2>Молодец! Ты справился(ась)! Нажни "Дальше" чтобы попасть на следующую страницу</h2>
+        <a href="{% url 'page5' %}"><button type="button"><h3>Дальше</h3></button></a>
+        {% endif %}
+    </form>
+{% endblock %}

@@ -1,0 +1,35 @@
+h2 {
+    text-align: center
+}
+h1 {
+    display: flex;
+    justify-content: center;
+}
+button {
+    display: flex;
+    width: 300px;
+    background-color: yellow;
+    justify-content: center;
+    text-align: center;
+    border-radius: 50px;
+}
+.central {
+    display: flex;
+    justify-content: center
+}
+div {
+    display: inline-block;
+    width: 1600px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black;
+    border-radius: 50px;
+    background: #87CEFA;
+}
+pre {
+    text-indent: 30px;
+}
+body {
+    margin: 0px 150px;
+    font-size: 25px;
+}
