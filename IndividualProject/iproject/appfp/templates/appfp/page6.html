@@ -1,0 +1,87 @@
+{% extends 'appfp/layout.html' %}
+{% block title %}Принципы ООП. Полиморфизм{% endblock %}
+{% block content %}
+    <a href="{% url 'index' %}">На главную</a>
+    <h1>Полиморфизм</h1>
+    <h2>Что такое полиморфизм?</h2>
+    <h3>Полиморфизм (от греч. "много форм") - это возможность объектов с одинаковым интерфейсом иметь разную реализацию. Один и тот же метод может работать по-разному для разных классов.</h3>
+    <h2>Полиморфизм в действии</h2>
+    <div>
+        <pre>class Bird:</pre>
+        <pre>    def move(self):</pre>
+        <pre>        return "Летит"</pre>
+        <pre>class Fish:</pre>
+        <pre>    def move(self):</pre>
+        <pre>        return "Плывёт"</pre>
+        <pre>class Emu:</pre>
+        <pre>    def move(self):</pre>
+        <pre>        return "Бежит"</pre>
+        <pre># Все объекты имеют метод move(), но реализация разная</pre>
+        <pre>animals = [Bird(), Fish(), Emu()]</pre>
+        <pre>for obj in animals:</pre>
+        <pre>    print(obj.move())</pre>
+    </div>
+    <h3>Вывод программы:</h3>
+    <div>
+        <pre>Летит</pre>
+        <pre>Плывёт</pre>
+        <pre>Бежит</pre>
+    </div>
+    <h2>Полиморфизм и утиная типизация</h2>
+    <h3>В Python используется "утиная типизация" (duck typing): если объект ходит как утка и крякает как утка, то это утка. Важен не тип объекта, а наличие нужных методов.</h3>
+    <div>
+        <pre>class RussianSpeaker:</pre>
+        <pre>    def speak(self):</pre>
+        <pre>        return "Привет!"</pre>
+        <pre>class EnglishSpeaker:</pre>
+        <pre>    def speak(self):</pre>
+        <pre>        return "Hello!"</pre>
+        <pre>class Dog:</pre>
+        <pre>    def speak(self):</pre>
+        <pre>        return "Гав!"</pre>
+        <pre>def greet(speaker):</pre>
+        <pre>    print(speaker.speak())</pre>
+        <pre># Функция greet работает с любым объектом, у которого есть метод speak()</pre>
+        <pre>greet(RussianSpeaker())  # Привет!</pre>
+        <pre>greet(EnglishSpeaker())  # Hello!</pre>
+        <pre>greet(Dog())            # Гав!</pre>
+    </div>
+    <h2>Перегрузка операторов</h2>
+    <h3>Полиморфизм также проявляется в перегрузке операторов:</h3>
+    <div>
+        <pre>class Vector:</pre>
+        <pre>    def __init__(self, x, y):</pre>
+        <pre>        self.x = x</pre>
+        <pre>        self.y = y</pre>
+        <pre>    def __add__(self, other):  # перегрузка оператора +</pre>
+        <pre>        return Vector(self.x + other.x, self.y + other.y)</pre>
+        <pre>    def __str__(self):  # перегрузка преобразования в строку</pre>
+        <pre>        return f"Vector({self.x}, {self.y})"</pre>
+        <pre>v1 = Vector(1, 2)</pre>
+        <pre>v2 = Vector(3, 4)</pre>
+        <pre>v3 = v1 + v2  # используем перегруженный оператор +</pre>
+        <pre>print(v3)      # Vector(4, 6)</pre>
+    </div>
+    <h2>Преимущества полиморфизма</h2>
+    <h3>1. Гибкость кода</h3>
+    <h3>2. Упрощение взаимодействия между объектами</h3>
+    <h3>3. Возможность расширения без изменения существующего кода</h3>
+    <h3>4. Более читаемый и понятный код</h3>
+    <h2>Абстрактные классы</h2>
+    <h3>Для создания полиморфных интерфейсов можно использовать абстрактные классы:</h3>
+    <div>
+        <pre>from abc import ABC, abstractmethod</pre>
+        <pre>class Shape(ABC):</pre>
+        <pre>    @abstractmethod</pre>
+        <pre>    def area(self):</pre>
+        <pre>        pass</pre>
+        <pre>class Rectangle(Shape):</pre>
+        <pre>    def __init__(self, width, height):</pre>
+        <pre>        self.width = width</pre>
+        <pre>        self.height = height</pre>
+        <pre>    def area(self):</pre>
+        <pre>        return self.width * self.height</pre>
+</div>
+<h3 class="central">На этом всё. Спасибо за внимание!</h3>
+<a class="central" href="{% url 'index' %}"><button><h3>На главную</h3></button></a>
+{% endblock %}
